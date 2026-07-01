@@ -27,15 +27,11 @@ createProject     createSourceCodePolicy      (S3 上传)        createJob
 
 ---
 
-## 上传模式 vs 克隆模式
+## 克隆模式 vs 上传模式
 
 按客户的情况选一条：
 
-**① 上传模式**（代码会变、每次都要带上最新代码）
-`login → createProject → createSourceCodePolicy → 逐文件上传 → createJob(带 code)`
-方法：`createTask` / `create_task`。见各 client README 的「快速开始」。
-
-**② 克隆模式**（环境/代码已在工作空间里准备好，想省去每次上传）
+**① 克隆模式（推荐）**（环境/代码已在工作空间里准备好，想省去每次上传）
 客户**预先**在一个 workspace 里把代码、依赖调好、**在 workspace 内部保存到 `/output`**；之后每个 task **直接读写绑定这个工作空间的 `/output`**，命令里写 `python /output/main.py` 就能跑。
 - **零上传，且对用户完全不暴露 sourceCode**——他面对的只有「我的工作空间 id + 要跑的命令」。
 - 特别大的模型 / 数据集才另挂到 `/input0`。
@@ -53,6 +49,10 @@ createProject     createSourceCodePolicy      (S3 上传)        createJob
 > `dataBindings: [ <party>/jobs/<workspaceId>/output : /output : READ_WRITE ]`。
 > workspace 的复用绑定规则：**只读绑定到 `/input*`，或读写绑定到 `/output`**——克隆用后者（代码挂 `/output`），大模型/数据集用前者（挂 `/input*`）。
 > 已实测：任务 `sourceCode` 为空也能跑。
+
+**② 上传模式**（代码会变、每次都要带上最新代码）
+`login → createProject → createSourceCodePolicy → 逐文件上传 → createJob(带 code)`
+方法：`createTask` / `create_task`。见各 client README 的「快速开始」。
 
 ---
 
