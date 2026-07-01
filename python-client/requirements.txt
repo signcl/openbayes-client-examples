@@ -1,0 +1,3 @@
+# Only external dependency: boto3 (for the S3 upload). GraphQL uses the stdlib (urllib + json).
+# botocore >= 1.36 is where the checksum/Content-Length fix in uploader.py matters; older is fine too.
+boto3>=1.36
