@@ -92,8 +92,9 @@ bayes gear run workspace
 数据集仅需上传一次，之后每次运行任务均以挂载方式直接访问，无需重复上传，可支持较大规模的数据：
 
 ```bash
-bayes data create my-data                    # 创建数据集，返回数据集 ID
-bayes data upload <数据集ID> -p ./big_data   # 上传（大文件自动分块，支持断点续传）
+bayes data create my-data                                # 创建数据集，返回数据集 ID
+bayes data new-version <数据集ID>                        # 新建一个版本（返回版本号，首次即 1）
+bayes data upload <数据集ID> -v <版本号> -p ./big_data   # 上传到该版本（大文件自动分块，支持断点续传）
 
 # 运行任务时绑定，挂载至 /input0（只读）：
 bayes gear run task -e <运行环境> -r rtx-5090 \
