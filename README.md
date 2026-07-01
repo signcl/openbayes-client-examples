@@ -29,7 +29,7 @@ createProject     createSourceCodePolicy      (S3 上传)        createJob
 `login → createProject → createSourceCodePolicy → 逐文件上传 → createJob(带 code)`
 方法：`createTask` / `create_task`。见各 client README 的「快速开始」。
 
-**② 克隆模式**（推荐给小白；环境/代码已在工作空间里准备好）
+**② 克隆模式**（环境/代码已在工作空间里准备好，想省去每次上传）
 客户**预先**在一个 workspace 里把代码、依赖调好、**在 workspace 内部保存到 `/output`**；之后每个 task **直接读写绑定这个工作空间的 `/output`**，命令里写 `python /output/main.py` 就能跑。
 - **零上传，且对用户完全不暴露 sourceCode**——他面对的只有「我的工作空间 id + 要跑的命令」。
 - 特别大的模型 / 数据集才另挂到 `/input0`。
@@ -50,7 +50,7 @@ createProject     createSourceCodePolicy      (S3 上传)        createJob
 
 ---
 
-## 给新手的名词速查
+## 名词速查
 
 | 名词 | 一句话解释 |
 |------|-----------|
@@ -83,7 +83,7 @@ OpenBayes 的接口用的是 **GraphQL**。对接它你只需记住三件事：
 
 **每个请求必须带两个 HTTP 头，缺一不可：**
 - `Authorization: Bearer <token>` —— 你的身份。
-- `Origin: https://openbayes.com/gateway` —— **少了它会被直接拒：`403 Invalid CORS request`**（新手最容易忘）。
+- `Origin: https://openbayes.com/gateway` —— **少了它会被直接拒：`403 Invalid CORS request`**（最容易忘的一点）。
 
 **动手试一下**（能返回用户名就说明 token 有效，只读、免费）：
 ```bash
@@ -102,7 +102,7 @@ curl -s https://openbayes.com/gateway \
 
 ## 怎么拿 token
 
-两种方式，**新手推荐第二种**：
+两种方式，**推荐第二种**（省去手动找 token）：
 
 1. **网页方式**：登录 OpenBayes 控制台，在账号设置里找到「访问令牌 / token」复制出来。
 2. **账号密码方式（推荐）**：不用自己找 token，把用户名密码交给程序，它会用 `login` 接口自动换 token。

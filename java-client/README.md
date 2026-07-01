@@ -99,7 +99,7 @@ implementation 'software.amazon.awssdk:s3'
 
 ## 克隆模式：复用已准备好的工作空间（零上传）
 
-适合小白：客户**预先**在一个 workspace 里把代码/依赖调好、放进 `/output`，之后每个 task 直接绑定它——零上传、对用户不暴露 sourceCode。
+适合环境/代码已在工作空间里准备好的场景：客户**预先**在一个 workspace 里把代码/依赖调好、放进 `/output`，之后每个 task 直接绑定它——零上传、对用户不暴露 sourceCode。
 
 ```bash
 export OPENBAYES_TOKEN="<你的 token>"                 # 或账号密码
