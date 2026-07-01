@@ -121,7 +121,7 @@ JobResult job = client.createTaskFromWorkspace(party, spec);
 ```
 内部：`createJob` 不带 code，改把 `<party>/jobs/<workspaceId>/output` **读写绑定到 `/output`**。
 workspace 的复用绑定规则：只读绑定到 `/input*`，或读写绑定到 `/output`；克隆用后者。内容由客户在 workspace 内保存到 `/output`。
-大模型 / 数据集才另挂 `/input0`。概念详见根 README「两种用法」。
+大模型 / 数据集才另挂 `/input0`。概念详见根 README「上传模式 vs 克隆模式」。
 
 ## 代码结构（每个类干一件事，与 Python 版一一对应）
 
