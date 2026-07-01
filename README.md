@@ -1,16 +1,22 @@
 # openbayes-client-examples
 
-在**你自己的代码里**对接 OpenBayes：自动「上传代码 + 在云端算力上起一个任务」——
-也就是把命令行 `bayes` 做的「创建脚本执行 (task)」搬进你的程序里。
+对接 OpenBayes（上传代码 + 在云端算力上起一个任务）的参考资料。有**两种对接方式**，按需求挑一种：
 
-本仓库提供两个**功能对等**的参考客户端，挑你顺手的语言：
+| 对接方式 | 是什么 | 适合 | 入口 |
+|---------|--------|------|------|
+| **命令行 `bayes` CLI** | 装个命令行工具，敲命令 / 写脚本 | 人工操作、快速上手、简单自动化 | [`cli-workflow.md`](cli-workflow.md) |
+| **程序化 API** | 把 OpenBayes 嵌进你自己的程序 | 产品级集成、深度定制 | 下面的 `java-client/` · `python-client/` |
+
+两种方式做的是同一件事（建项目 → 跑任务 → 取结果），彼此一一对应。
+
+程序化 API 提供两个**功能对等**的参考客户端：
 
 | 目录 | 技术栈 | 怎么用 |
 |------|--------|--------|
 | [`java-client/`](java-client/) | Java 17 + Gradle | 见 [java-client/README.md](java-client/README.md) |
 | [`python-client/`](python-client/) | Python 3.8+ + boto3 | 见 [python-client/README.md](python-client/README.md) |
 
-两者做的是同一件事、调的是同一套接口。**本页讲对两者通用的概念**；具体怎么装、怎么跑、怎么嵌进你的工程，进对应子目录看它的 README。
+**本页往下讲 API 方式的通用概念**；命令行方式独立成篇，见 [`cli-workflow.md`](cli-workflow.md)。具体怎么装、怎么跑、怎么嵌进你的工程，进对应子目录看它的 README。
 
 ```
 [拿到 token] ─► 建项目 ─► 申请上传凭证 ─► 把代码文件传上去 ─► 创建任务
